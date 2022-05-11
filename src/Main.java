@@ -6,12 +6,7 @@ class Solution {
         boolean answer = true;
         HashSet<String> saveSet = new HashSet<>();
 
-        Arrays.sort(phone_book, new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                return Integer.compare(o1.length(), o2.length());
-            }
-        });
+        Arrays.sort(phone_book, (s1, s2) ->  s1.length() - s2.length());
 
         for(String phone : phone_book){
             String partOfPhone = new String();
