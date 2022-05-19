@@ -3,12 +3,14 @@ function solution(priorities, location) {
 
   let result = 0;
   while (prioritiesObjs) {
-    if (prioritiesObjs.slice(1).some((priority) => prioritiesObjs[0].priority < priority.priority)) {
-      prioritiesObjs.push(prioritiesObjs.shift());
-    } else {
-      const popPriority = prioritiesObjs.shift();
-      result = result + 1;
+    const popPriority = prioritiesObjs.shift();
 
+    if (prioritiesObjs.some((priority) => popPriority.priority < priority.priority)) {
+      prioritiesObjs.push(popPriority);
+    }
+
+    if (prioritiesObjs.every((priority) => popPriority.priority >= priority.priority)) {
+      result = result + 1;
       if (popPriority.location === location) break;
     }
   }
@@ -17,9 +19,9 @@ function solution(priorities, location) {
 }
 
 // Test Case
-console.log(solution([2, 1, 3, 2], 2)); // 1
-console.log(solution([1, 1, 9, 1, 1, 1], 0)); // 5
-console.log(solution([1], 0)); // 1
+// console.log(solution([2, 1, 3, 2], 2)); // 1
+// console.log(solution([1, 1, 9, 1, 1, 1], 0)); // 5
+// console.log(solution([1], 0)); // 1
 
 /**
  * 문제: 프린터 - 프로그래머스
